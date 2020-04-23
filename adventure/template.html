@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-image: url("https://images-na.ssl-images-amazon.com/images/I/71ol1jY8qQL._AC_SL1024_.jpg");
+        background-color: rgb(29, 34, 40);
+        background-position: center;
+        background-position-y: top;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+      }
+      h {
+        font-family: fantasy;
+        color: white;
+        font-size: 40px;
+        margin-left: 30%;
+      }
+      p {
+        font-style: oblique;
+        color: white;
+        font-size: 25px;
+      }
+      a {
+        font-style: inherit;
+        color: red;
+        font-size: 20px;
+      }
+      #main {
+        border: 2px solid white;
+        width: 50%;
+        margin-top: 20px;
+        margin-left: 25%;
+      }
+      #link {
+        border: 2px solid white;
+        width: 50%;
+        margin-top: 10px;
+        margin-left: 25%;
+      }
+    </style>
+    <h>Adventure : {{.Title}}</h>
+  </head>
+  <body>
+    <div id="main">
+      {{range .Story}}
+      <p>{{.}}</p>
+      {{end}}
+    </div>
+    <div id="link">
+      <ul>
+        {{range .Options}}
+        <a href="{{.Arc}}"
+          ><li style="font-size: 17px; color: white;">
+            {{.Text}}
+          </li></a
+        >
+        {{end}}
+      </ul>
+    </div>
+  </body>
+</html>
