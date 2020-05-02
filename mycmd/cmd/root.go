@@ -3,7 +3,7 @@ package cmd
 import "github.com/spf13/cobra"
 
 //Data is struct for storing my commands
-var Data data
+var Data map[string]data
 
 //RootCmd is the main command
 var RootCmd = &cobra.Command{
@@ -12,10 +12,22 @@ var RootCmd = &cobra.Command{
 }
 
 type data struct {
-	program []list
+	name     string
+	commands []string
 }
 
-type list struct {
-	name     string
-	commands map[string][]string
-}
+/*
+
+//*data (acutally program_name)
+//*command
+//*command
+
+cobra
+-cobra add
+-cobra help
+
+postgres
+-psql postgres
+-\c connect
+-\q quit
+*/
