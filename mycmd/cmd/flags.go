@@ -1,33 +1,25 @@
 package cmd
 
 import (
-	"log"
+	"errors"
 	"strings"
 
 	"github.com/spf13/cobra"
 )
 
-func lAdd(cmd *cobra.Command, args []string) {
+func lAdd(cmd *cobra.Command, args []string, flagval string) (map[string]data, error) {
 	usercommand := strings.Join(args, " ")
-	flagval, err := cmd.Flags().GetString("l")
-	if err != nil {
-		log.Fatal(err)
-	}
 	if list, ok := Data[flagval]; ok == true {
 		Data[flagval] = data{commands: append(list.commands, usercommand)}
-	} else {
-		log.Fatal("list does not exist (create using flag --c)")
+		return Data, nil
 	}
+	return nil, errors.New("list does not exist (create using flag --c)")
 }
 
-func cAdd(cmd *cobra.Command, args []string) {
-	flagval, err := cmd.Flags().GetString("c")
-	if err != nil {
-		log.Fatal(err)
-	}
+func cAdd(cmd *cobra.Command, args []string, flagval string) (map[string]data, error) {
 	if _, ok := Data[flagval]; ok == true {
-		log.Fatal("data is already exists")
-	} else {
-		Data[flagval] = data{}
+		return nil, errors.New("data is already exists")
 	}
+	Data[flagval] = data{name: flagval}
+	return Data, nil
 }
