@@ -12,9 +12,10 @@ var RootCmd = &cobra.Command{
 }
 
 type data struct {
-	app []appcommands
+	program []list
 }
 
-type appcommands struct {
-	commands []string
+type list struct {
+	name     string
+	commands map[string][]string
 }

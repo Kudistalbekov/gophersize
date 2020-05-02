@@ -20,9 +20,6 @@ var addCmd = &cobra.Command{
 		} else if tolist == " " {
 			log.Println("--l is empty")
 		}
-		if ok := contains(Data, tolist); ok == false {
-
-		}
 	},
 }
 
