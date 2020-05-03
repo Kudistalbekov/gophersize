@@ -1,25 +1,35 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 	"projects/gophersize/mycmd/cmd"
 
-	"github.com/go-yaml/yaml"
+	"gopkg.in/yaml.v2"
 )
 
-//checking if files exist
+//checking if files exist and preaparing file
 func init() {
-	file, err := os.Open("data/data.yaml")
-	if err != nil {
-		log.Fatal(err)
+
+	var (
+		err      error
+		yamldata []byte
+	)
+
+	if cmd.File, err = os.Open(cmd.Path); err != nil {
+		cmd.Errorlog.Fatal(err)
 	}
-	data, err := ioutil.ReadAll(file)
-	if err != nil {
-		log.Fatal(err)
+
+	if yamldata, err = ioutil.ReadAll(cmd.File); err != nil {
+		cmd.Errorlog.Fatal(err)
 	}
-	yaml.Unmarshal([]byte(data), cmd.Data)
+
+	if err = yaml.Unmarshal([]byte(yamldata), cmd.Data); err != nil {
+		cmd.Errorlog.Fatal(err)
+	}
+	fmt.Println(cmd.Data)
 }
 
 func main() {

@@ -7,19 +7,21 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func lAdd(cmd *cobra.Command, args []string, flagval string) (map[string]data, error) {
+func lAdd(cmd *cobra.Command, args []string, flagval string) (map[string]Yaml, error) {
 	usercommand := strings.Join(args, " ")
 	if list, ok := Data[flagval]; ok == true {
-		Data[flagval] = data{commands: append(list.commands, usercommand)}
+		Data[flagval] = Yaml{Commands: append(list.Commands, usercommand)}
+		Infolog.Println("added!")
 		return Data, nil
 	}
-	return nil, errors.New("list does not exist (create using flag --c)")
+	return nil, errors.New(flagval + " does not exist")
 }
 
-func cAdd(cmd *cobra.Command, args []string, flagval string) (map[string]data, error) {
+func cAdd(cmd *cobra.Command, args []string, flagval string) (map[string]Yaml, error) {
 	if _, ok := Data[flagval]; ok == true {
-		return nil, errors.New("data is already exists")
+		return nil, errors.New(flagval + " is already exists")
 	}
-	Data[flagval] = data{name: flagval}
+	Data[flagval] = Yaml{}
+	Infolog.Println("created!")
 	return Data, nil
 }

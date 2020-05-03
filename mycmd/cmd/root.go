@@ -1,37 +1,65 @@
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"io/ioutil"
+	"log"
+	"os"
 
-//RootCmd is the main command
-var RootCmd = &cobra.Command{
-	Use:   "mycmd",
-	Short: "mycmd command is for storing my commands",
+	"github.com/spf13/cobra"
+	"gopkg.in/yaml.v2"
+)
+
+//Yaml struct
+type Yaml struct {
+	Commands []string `yaml:"commands"`
 }
 
-//Data is struct for storing my commands
-var Data = make(map[string]data)
+var (
+	//Data is val type of struct for storing my commands
+	Data = make(map[string]Yaml)
+	//File where is stored yaml ,open whenever mycmd command runs
+	//TODO implement function for refreshing part
+	File *os.File
+	//RootCmd is the main command
+	RootCmd = &cobra.Command{
+		Use:   "mycmd",
+		Short: "mycmd command is for storing my commands",
+	}
+	//Path where to store Yaml
+	Path = "data/data.yaml"
+	//Infolog to log information
+	Infolog = log.New(os.Stdout, "INFO:", log.Ltime)
+	//Errorlog to log errors
+	Errorlog = log.New(os.Stdout, "Error:", log.Ltime)
+)
 
-type data struct {
-	name     string
-	commands []string
-}
-
-func refresh(next func(*cobra.Command, []string, string) (map[string]data, error), cmd *cobra.Command, args []string, val string) {
+func refresh(next func(*cobra.Command, []string, string) (map[string]Yaml, error), cmd *cobra.Command, args []string, val string) {
 	newdata, err := next(cmd, args, val)
-	//TODO Implement to refresh data_yaml evretime when there is changes
+	if err != nil {
+		Errorlog.Fatal(err)
+	}
+	yamldata, err := yaml.Marshal(newdata)
+	if err != nil {
+		Errorlog.Fatal(err)
+	}
+	if err = ioutil.WriteFile(Path, yamldata, 0666); err != nil {
+		Errorlog.Fatal(err)
+	}
 }
 
 /*
 
-//*data (acutally program_name)
+//*Yaml (acutally program_name)
 //*command
 //*command
 
 cobra
+commands:
 -cobra add
 -cobra help
 
 postgres
+commands:
 -psql postgres
 -\c connect
 -\q quit
