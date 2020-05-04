@@ -28,9 +28,9 @@ var (
 	//Path where to store Yaml
 	Path = "data/data.yaml"
 	//Infolog to log information
-	Infolog = log.New(os.Stdout, "INFO:", log.Ltime)
+	Infolog = log.New(os.Stdout, "INFO:\t", log.Ltime)
 	//Errorlog to log errors
-	Errorlog = log.New(os.Stdout, "Error:", log.Ltime)
+	Errorlog = log.New(os.Stdout, "Error:\t", log.Ltime)
 )
 
 func refresh(next func(*cobra.Command, []string, string) error, cmd *cobra.Command, args []string, val string) {
