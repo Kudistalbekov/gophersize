@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -29,7 +28,6 @@ func init() {
 	if err = yaml.Unmarshal([]byte(yamldata), cmd.Data); err != nil {
 		cmd.Errorlog.Fatal(err)
 	}
-	fmt.Println(cmd.Data)
 }
 
 func main() {

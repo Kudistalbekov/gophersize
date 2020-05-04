@@ -1,30 +1,21 @@
 package cmd
 
 import (
-	"fmt"
-	"log"
-	"strconv"
-
 	"github.com/spf13/cobra"
 )
 
 // removeCmd represents the remove command
 var removeCmd = &cobra.Command{
-	Use:   "remove",
-	Short: "Remove existing command",
+	Use:     "remove",
+	Short:   "Remove existing command",
+	Example: "remove --l 3 4 5 6",
 	Run: func(cmd *cobra.Command, args []string) {
-		var task []int
-		for _, uservalue := range args {
-			if n, err := strconv.Atoi(uservalue); err != nil {
-				log.Printf("couldn't remove %v", uservalue)
-			} else {
-				task = append(task, n)
-			}
-		}
-		fmt.Println(task)
+		flagval, _ := cmd.Flags().GetString("l")
+		refresh(lremove, cmd, args, flagval)
 	},
 }
 
 func init() {
 	RootCmd.AddCommand(removeCmd)
+	removeCmd.Flags().String("l", "", "removes commands from the list")
 }

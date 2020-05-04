@@ -33,12 +33,11 @@ var (
 	Errorlog = log.New(os.Stdout, "Error:", log.Ltime)
 )
 
-func refresh(next func(*cobra.Command, []string, string) (map[string]Yaml, error), cmd *cobra.Command, args []string, val string) {
-	newdata, err := next(cmd, args, val)
-	if err != nil {
+func refresh(next func(*cobra.Command, []string, string) error, cmd *cobra.Command, args []string, val string) {
+	if err := next(cmd, args, val); err != nil {
 		Errorlog.Fatal(err)
 	}
-	yamldata, err := yaml.Marshal(newdata)
+	yamldata, err := yaml.Marshal(Data)
 	if err != nil {
 		Errorlog.Fatal(err)
 	}

@@ -1,0 +1,7 @@
+github:
+  commands:
+    - init hello
+postgres:
+  commands:
+    - psql
+    - psql2
