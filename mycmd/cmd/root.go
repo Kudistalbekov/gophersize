@@ -18,7 +18,6 @@ var (
 	//Data is val type of struct for storing my commands
 	Data = make(map[string]Yaml)
 	//File where is stored yaml ,open whenever mycmd command runs
-	//TODO implement function for refreshing part
 	File *os.File
 	//RootCmd is the main command
 	RootCmd = &cobra.Command{
@@ -26,7 +25,7 @@ var (
 		Short: "mycmd command is for storing my commands",
 	}
 	//Path where to store Yaml
-	Path = "data/data.yaml"
+	Path = "/home/kudi/Programming/go/src/projects/gophersize/mycmd/data/data.yaml"
 	//Infolog to log information
 	Infolog = log.New(os.Stdout, "INFO:\t", log.Ltime)
 	//Errorlog to log errors
