@@ -1,5 +1,8 @@
 package main
 
+//TODO Make it work with commands below :
+//* mycmd remove -l listname
+//* mtcmd remove -l listname 0 1 (number of commands)
 import (
 	"io/ioutil"
 	"log"

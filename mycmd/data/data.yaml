@@ -1,29 +1,36 @@
 github:
   commands:
-    - "\U0001F6A9locate -r .git"
-    - git init .
-    - git remote add origin --path
-    - git add .
-    - git commit -m ..
-    - git push -f origin master
-    - "\U0001F3F4ssh-add ~/.ssh/id_rsa"
+  - "\U0001F6A9locate -r .git"
+  - git init .
+  - git remote add origin --path
+  - git add .
+  - git commit -m ..
+  - git push -f origin master
+  - "\U0001F3F4ssh-add ~/.ssh/id_rsa"
 mysql:
   commands:
-    - service mysql start
-    - service mysql stop
-    - service mysql restart
+  - service mysql start
+  - service mysql stop
+  - service mysql restart
 postgres:
   commands:
-    - "\U0001F3F4psql postgres - start"
-    - "\U0001F3F4create database dbname;"
-    - "\U0001F6A9\\d - List tables in database"
-    - "\U0001F6A9\\c dbname - Connect to another database"
-    - "\U0001F6A9\\q - Quit from postgres shell"
-    - "\U0001F6A9\\l - List all databases"
-    - \d tablename - Describe a table
-    - \d+ - List all tables in database along with some additional information
-    - \d+ tablename - Describe a table with additional information
-    - \l+ - List all databases with additional info..
+  - "\U0001F3F4psql postgres - start"
+  - "\U0001F3F4create database dbname;"
+  - "\U0001F6A9\\d - List tables in database"
+  - "\U0001F6A9\\c dbname - Connect to another database"
+  - "\U0001F6A9\\q - Quit from postgres shell"
+  - "\U0001F6A9\\l - List all databases"
+  - \d tablename - Describe a table
+  - \d+ - List all tables in database along with some additional information
+  - \d+ tablename - Describe a table with additional information
+  - \l+ - List all databases with additional info..
 utorrant:
   commands:
-    - " utserver -settingspath /opt/utorrent-server-alpha-v3_3/"
+  - ' utserver -settingspath /opt/utorrent-server-alpha-v3_3/'
+virtualenvwr:
+  commands:
+  - mkvirtualenv -Create a virtual env
+  - workon - gives all envs and can switch between them
+  - deactivate - deactivates current envs
+  - rmvirtualenv env_name - removes given env
+  - url - https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
