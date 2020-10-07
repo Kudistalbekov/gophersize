@@ -1,3 +1,10 @@
+docker:
+  commands:
+  - docker run image name - creating and running a container
+  - docker ps - list all running containers
+  - docker ps 2-all - all containers creaated ever in machine
+  - docker system prune - to remove containers
+  - docker logs container_id - get logs from a container
 github:
   commands:
   - "\U0001F6A9locate -r .git"
@@ -7,6 +14,18 @@ github:
   - git commit -m ..
   - git push -f origin master
   - "\U0001F3F4ssh-add ~/.ssh/id_rsa"
+gulp:
+  commands:
+  - gulp build - compile the project
+  - gulp serve - start the server
+linux:
+  commands:
+  - xdg-open . opens current dir
+litelement:
+  commands:
+  - npm install - to install dependencies
+  - npm run dev - to run the server
+  - npm install 2-save lit-element - to install lit-element
 mysql:
   commands:
   - service mysql start
@@ -24,9 +43,16 @@ postgres:
   - \d+ - List all tables in database along with some additional information
   - \d+ tablename - Describe a table with additional information
   - \l+ - List all databases with additional info..
+python:
+  commands:
+  - django-admin startproject project_name - create django project
+  - python manage.py startapp appname - create app
+  - python manage.py createsuperuser
 utorrant:
   commands:
-  - ' utserver -settingspath /opt/utorrent-server-alpha-v3_3/'
+  - localhost:8081/gui
+  - utserver -settingspath /opt/utorrent-server-alpha-v3_3/ -daemon - start torrent
+  - sudo pkill utserver - sop torrent
 virtualenvwr:
   commands:
   - mkvirtualenv -Create a virtual env
